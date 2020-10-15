@@ -1,5 +1,5 @@
 #include "CovidCase.h"
-
+#include <iostream>
 
 int main() {
     // this just make some objects for you
