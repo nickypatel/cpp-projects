@@ -8,7 +8,7 @@
 using std::stack;
 using std::vector;
 using std::string;
-using std::stod;
+using std::cout;
 
 // this is provided code for the last part of the README
 
@@ -46,19 +46,85 @@ public:
 
 // TODO: write code here:
 double evaluateCountdown(const string& expression){
-    vector<double> operands;
+    vector<string> tokens;
     stack<double> mystack;
-    
-    stod(expression)
-    if (mystack.top()){
+    std::stringstream ss(expression);     
+    string intermediate; 
+      
+    // Tokenizing w.r.t. space ' ' 
+    while(getline(ss, intermediate, ' ')) 
+    { 
+        tokens.push_back(intermediate); 
+    } 
+      
+    // evaluate expression
+    for(int i = 0; i < tokens.size();){ 
+        string plus = "+";
+        string minus = "-";
+        string times = "*";
+        string divide = "/";
+        if(tokens[i].compare(plus)== 0){
+            double result;
+            result = mystack.top();
+            mystack.pop();
+            result+= mystack.top();
+            mystack.pop();
+            mystack.push(result);
+            ++i;
+        }
 
-    }
-    else mystack.push();
+        else if(tokens[i].compare(minus)== 0){
+            double result1,result2;
+            result1 = mystack.top();
+            mystack.pop();
+            result2= mystack.top();
+            mystack.pop();
+            mystack.push(result2-result1);
+            ++i;
+        }
+
+        else if(tokens[i].compare(times)== 0){
+            double result;
+            result = mystack.top();
+            mystack.pop();
+            result*=mystack.top();
+            mystack.pop();
+            mystack.push(result);
+            ++i;
+        }   
+
+        else if(tokens[i].compare(divide)== 0){
+            double result1,result2;
+            result1 = mystack.top();
+            mystack.pop();
+            result2 = mystack.top();
+            mystack.pop();
+            mystack.push(result2/result1);
+            ++i;
+        } 
+
+        else {
+            double a = std::stod(tokens[i]);
+            mystack.push(a);
+            ++i;
+            
+        }   
+           
+    }   
+
     return mystack.top();
 }
 
 CountdownSolution solveCountdownProblem(const vector<int>& input, const int& target){
+    
+    int target(target);
+    string rpn = intToString(input[1]);
 
+    while (target!= evaluateCountdown(rpn)){
+   
+    }
+    CountdownSolution bestsolution(rpn,target);
+    return bestsolution;
 }
 
 // Do not edit below this line
