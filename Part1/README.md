@@ -134,3 +134,11 @@ To test your code, compile and run `TestCountdown.cpp`.  This will evaluate some
 Notes:
 - The suggested solution approach is to write code that constructs different RPN expressions (using each number at most once, and using the available mathematical operators), evaluates them (using your `evaluateCountdown` function), and returns the best solution found (closest to target number)
 - The given code `intToString` may be helpful for you as part of this, when building RPN expressions: it takes an int, and returns a string.
+
+
+
+mynotes:
+check if string is valid: check that number of digits > operators
+
+take two digits, apply all 4 operators
+

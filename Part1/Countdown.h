@@ -5,6 +5,8 @@
 #include <sstream>
 #include <vector>
 #include <stack>
+#include <algorithm>
+using std::next_permutation;
 using std::stack;
 using std::vector;
 using std::string;
@@ -115,17 +117,36 @@ double evaluateCountdown(const string& expression){
     return mystack.top();
 }
 
-CountdownSolution solveCountdownProblem(const vector<int>& input, const int& target){
-    
-    int target(target);
-    string rpn = intToString(input[1]);
-
-    while (target!= evaluateCountdown(rpn)){
-   
-    }
-    CountdownSolution bestsolution(rpn,target);
-    return bestsolution;
+bool isValid(const double& other, const int& target){
+    return (other == target);
 }
+
+
+CountdownSolution solveCountdownProblem(const vector<int>& input, const int& target){
+    CountdownSolution bestsolution("h",21);
+    bool solved = false;
+    vector<string> numbers;
+    int answer= target;
+    for (int i = 0; i < input.size();++i){
+        numbers.push_back(intToString(input[i]));
+    }
+    std::sort(numbers.begin(),numbers.end());
+    do { 
+
+        vector<string> expressions; 
+        double evaluationofrpn;
+        expressions[i].append(+,-,* /);
+        evaluationofrpn = evaluateCountdown(expressions[i]);
+        if (evaluationofrpn == answer){break;}
+        cout << numbers[0] << " " << numbers[1] << " " << numbers[2] << numbers[3]
+         << " " << numbers[4] << " " << numbers[5] <<"\n"; 
+    } while (next_permutation(numbers.begin(), numbers.end()));
+    
+       
+    return bestsolution;
+    }
+
+
 
 // Do not edit below this line
 
