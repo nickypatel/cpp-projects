@@ -52,7 +52,7 @@ class CovidCaseMap{
             data.push_back(TimeAndCaseData(cases[i].getTime(), active_cases));
 
             if (i == cases.size()-1){
-                for (int k = 1; k < cases.size();++k){
+                for (int k = 0; k < cases.size();++k){
                     if(cases[k].getTime()+ active_time > current_time){
                         --active_cases;
                         data.push_back(TimeAndCaseData(cases[k].getTime()+ active_time, active_cases));
