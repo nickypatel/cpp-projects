@@ -2,6 +2,11 @@
 #define COVIDCASEMAP_H
 
 #include "CovidCase.h"
+#include <utility>
+#include <algorithm>
+#include <iterator>
+using std::pair;
+using std::min_element;
 
 // TODO: your code goes here
 
@@ -26,7 +31,7 @@ class TimeAndCaseData{
 class CovidCaseMap{
     private:
     vector<CovidCase> cases;
-
+    int self_isolation_period;
     public:
 
     void addCase(CovidCase c){
@@ -68,8 +73,72 @@ class CovidCaseMap{
         return data;
     }
 
-    int supportVisitGreedyTSP(const double& latstart, const double& longstart, const int& start_time, const int& self_isolation_period){
+    double getRadians(const double& degrees){
+        double r = degrees * M_PI /180;
+        return r;
+    } 
 
+    double distanceBetweenTwoCoordinates(const double& lat1, const double& long1,const double& lat2, const double& long2){
+
+        double R(3960);
+        
+        double dlon =  getRadians(long2 - long1);
+           
+        double dlat =  getRadians(lat2 - lat1);
+        
+        double a = pow((sin(dlat/2)), 2) + (cos(getRadians(lat1)) * cos(getRadians(lat2)) * pow((sin(dlon/2)), 2));  
+        
+        double c = 2 * atan2( sqrt(a), sqrt(1-a) ) ;
+        
+        double distance = R * c ; 
+   
+        return distance;
+    }
+
+    vector<CovidCase> getActiveCases (const int& time){
+        vector<CovidCase> activecases;
+        for (int i = 0; i < cases.size(); ++i){
+            if (cases[i].getTime() + self_isolation_period > time && cases[i].getTime() < time){
+                activecases.emplace_back(cases[i]);
+            } 
+        }
+        return activecases;
+    }
+
+    double supportVisitGreedyTSP(const double& latstart, const double& longstart, const int& start_time, const int& self_iso_period){
+        self_isolation_period = self_iso_period;
+        double distance_travelled_in_miles ;
+        vector<pair<double,double> > coordinates;
+
+        coordinates.emplace_back(latstart,longstart);
+
+        vector<CovidCase> actvcases = getActiveCases(start_time);
+        for (int i = 0; i < actvcases.size(); ++i){
+           coordinates.emplace_back(actvcases[i].getLatitude(), actvcases[i].getLongitude());
+            
+        }
+        int val= 0;
+        while (coordinates.size() != 1){
+                vector<double> distances;
+                
+                for (auto k : coordinates){
+                distances.emplace_back(distanceBetweenTwoCoordinates(coordinates[0].first, coordinates[0].second,k.first, k.second));
+                
+                }
+
+                distances.erase(distances.begin());
+                val = std::distance(distances.begin(),min_element(distances.begin(),distances.end())+ 1);
+                cout << "smallest distance is :" <<*min_element(distances.begin(),distances.end()) << "\n\n";
+                distance_travelled_in_miles+= *min_element(distances.begin(),distances.end());
+                distances.clear();
+                coordinates.emplace(coordinates.begin(), coordinates[val]);
+                coordinates.erase(coordinates.begin()+ 1);
+                coordinates.erase(coordinates.begin()+ val);
+         
+        }
+        distance_travelled_in_miles+= distanceBetweenTwoCoordinates(coordinates[0].first, coordinates[0].second,latstart,longstart);
+  
+    return distance_travelled_in_miles;
     }
 };
 
