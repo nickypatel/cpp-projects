@@ -128,7 +128,7 @@ class CovidCaseMap{
 
                 distances.erase(distances.begin());
                 val = std::distance(distances.begin(),min_element(distances.begin(),distances.end())+ 1);
-                cout << "smallest distance is :" <<*min_element(distances.begin(),distances.end()) << "\n\n";
+                
                 distance_travelled_in_miles+= *min_element(distances.begin(),distances.end());
                 distances.clear();
                 coordinates.emplace(coordinates.begin(), coordinates[val]);
