@@ -10,6 +10,43 @@
 
 // TODO your code goes here:
 
+template<typename U>
+class NodeIterator2 {
+  
+private:
+    
+    Node<U>* current;
+    
+public:
+    
+
+    NodeIterator2(Node<U>* currentIn)
+        : current(currentIn) {        
+    }
+
+    U & operator*() {
+        return current->data;
+    }
+
+    // TODO: complete the code for NodeIterator here
+
+    NodeIterator2<U> operator++(){
+       current = current->next;
+        return current;
+    }
+    bool operator==(const NodeIterator2& other){
+        return (current == other.current);
+    }    
+    
+    bool operator!=(const NodeIterator2& other){
+        return (current != other.current);
+    }    
+    
+    Node<U>* getNodePtr(){
+        return current;
+    }
+};
+
 template<typename T>
 class LinkedList{
 
@@ -132,6 +169,35 @@ class LinkedList{
         NodeIterator<T> newitr(newNode);
 
          return newitr;
+    }
+
+    NodeIterator<T> erase (NodeIterator<T>& itr){
+        Node<T>* temp = itr.getNodePtr();
+        Node<T>* previous = temp->previous;
+        Node<T>* next = temp->next;
+        if (temp->next != nullptr)
+        {
+            next->previous = previous;
+        }
+        
+        if (temp->previous!= nullptr){
+           
+           previous->next = temp->next;
+        }
+        delete temp;
+
+        NodeIterator<T> newitr(next);
+        return newitr;
+    }
+
+    NodeIterator2<T>  begin() const{
+        NodeIterator2<T> itr(head);
+        return itr;
+    }
+
+    NodeIterator2<T>  end() const{
+        NodeIterator2<T> itr = nullptr;
+        return itr;
     }
 
 
