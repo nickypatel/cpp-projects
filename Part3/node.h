@@ -46,9 +46,9 @@ public:
 
     // TODO: complete the code for NodeIterator here
 
-    NodeIterator<T> operator++(const NodeIterator<T>& other){
-        other.current = current->next;
-        return other;
+    NodeIterator<T> operator++(){
+       current = current->next;
+        return current;
     }
     bool operator==(const NodeIterator& other){
         return (current == other.current);
