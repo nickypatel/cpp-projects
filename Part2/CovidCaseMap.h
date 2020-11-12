@@ -107,7 +107,7 @@ class CovidCaseMap{
 
     double supportVisitGreedyTSP(const double& latstart, const double& longstart, const int& start_time, const int& self_iso_period){
         self_isolation_period = self_iso_period;
-        double distance_travelled_in_miles ;
+        double distance_travelled_in_miles = 0 ;
         vector<pair<double,double> > coordinates;
 
         coordinates.emplace_back(latstart,longstart);
