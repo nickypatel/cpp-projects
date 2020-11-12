@@ -87,7 +87,7 @@ class LinkedList{
             delete current;
             current = next;
         }
-        head = nullptr;
+        
     }
 
     void reverse(){
