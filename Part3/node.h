@@ -12,7 +12,7 @@ using std::endl;
 // (Note the 'NodeIterator' class will report lots of errors until Node exists
 template<typename U>
 class Node {
-    private:
+    
     public:
     
     U data;
@@ -58,6 +58,9 @@ public:
         return (current != other.current);
     }    
     
+    Node<T>* getNodePtr(){
+        return current;
+    }
 };
 
 // do not edit below this line

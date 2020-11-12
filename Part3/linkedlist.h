@@ -108,6 +108,31 @@ class LinkedList{
  
     }
 
+    LinkedList(std::initializer_list<T> initlist){
+        head = nullptr;
+        tail = nullptr;
+        count = 0;
+        for(auto& e: initlist){
+            push_back(e);
+        }
+    }
+
+    NodeIterator<T> insert(NodeIterator<T> & itr, T element){
+        Node<T>* newNode = new Node<T> (element);
+        Node<T>* temp = itr.getNodePtr();
+
+        newNode->previous = temp->previous;
+        newNode->next = temp;
+        temp->previous = newNode;
+        if(temp != head){
+            Node<T>* temp2 = newNode->previous;
+            temp2->next = newNode;
+        }
+        
+        NodeIterator<T> newitr(newNode);
+
+         return newitr;
+    }
 
 
 };
