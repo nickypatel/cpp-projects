@@ -171,7 +171,7 @@ class LinkedList{
          return newitr;
     }
 
-    NodeIterator<T> erase (NodeIterator<T>& itr){
+    NodeIterator<T> erase (NodeIterator<T> itr){
         Node<T>* temp = itr.getNodePtr();
         Node<T>* previous = temp->previous;
         Node<T>* next = temp->next;
