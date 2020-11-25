@@ -118,10 +118,75 @@ class BinarySearchTree{
         }
     }
 
-/*     BinarySearchTree(const BinarySearchTree& other){
-        root = other.root;
-    } */
+    BinarySearchTree(const BinarySearchTree<T>& other){
+        if (other.root){
+            TreeNode<T>* rootNode = new TreeNode<T>(other.root->data);
+            root.reset(rootNode);
+            
+            if (other.root->leftChild){
+                TreeNode<T>* lc = new TreeNode<T>(other.root->leftChild->data);
+                root->setLeftChild(lc);
+            }
+
+            if (other.root->rightChild){
+                TreeNode<T>* lc = new TreeNode<T>(other.root->rightChild->data);
+                root->setRightChild(lc);
+            }
+
+                if (other.root->leftChild->leftChild){
+                    TreeNode<T>* lc = new TreeNode<T>(other.root->leftChild->leftChild->data);
+                    root->leftChild->setLeftChild(lc);
+                }
+                if (other.root->leftChild->rightChild){
+                    TreeNode<T>* lc = new TreeNode<T>(other.root->leftChild->rightChild->data);
+                    root->leftChild->setRightChild(lc);
+                }
+                if (other.root->rightChild->leftChild){
+                    TreeNode<T>* lc = new TreeNode<T>(other.root->rightChild->leftChild->data);
+                    root->rightChild->setLeftChild(lc);
+                }
+                if (other.root->rightChild->rightChild){
+                    TreeNode<T>* lc = new TreeNode<T>(other.root->rightChild->rightChild->data);
+                    root->rightChild->setRightChild(lc);
+                }                                                    
+
+        }
+    }
     
+    void operator=(const BinarySearchTree<T>& other){
+        if (other.root){
+            TreeNode<T>* rootNode = new TreeNode<T>(other.root->data);
+            root.reset(rootNode);
+            
+            if (other.root->leftChild){
+                TreeNode<T>* lc = new TreeNode<T>(other.root->leftChild->data);
+                root->setLeftChild(lc);
+            }
+
+            if (other.root->rightChild){
+                TreeNode<T>* lc = new TreeNode<T>(other.root->rightChild->data);
+                root->setRightChild(lc);
+            }
+
+                if (other.root->leftChild->leftChild){
+                    TreeNode<T>* lc = new TreeNode<T>(other.root->leftChild->leftChild->data);
+                    root->leftChild->setLeftChild(lc);
+                }
+                if (other.root->leftChild->rightChild){
+                    TreeNode<T>* lc = new TreeNode<T>(other.root->leftChild->rightChild->data);
+                    root->leftChild->setRightChild(lc);
+                }
+                if (other.root->rightChild->leftChild){
+                    TreeNode<T>* lc = new TreeNode<T>(other.root->rightChild->leftChild->data);
+                    root->rightChild->setLeftChild(lc);
+                }
+                if (other.root->rightChild->rightChild){
+                    TreeNode<T>* lc = new TreeNode<T>(other.root->rightChild->rightChild->data);
+                    root->rightChild->setRightChild(lc);
+                }                                                    
+
+        }
+    }
 };
 
 
