@@ -13,6 +13,7 @@
 template<typename U>
 class NodeIterator2 {
   
+  
 private:
     
     Node<U>* current;
