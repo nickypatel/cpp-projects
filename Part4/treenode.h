@@ -29,14 +29,23 @@ class TreeNode{
     }
 
     void setLeftChild(TreeNode<T>* child){
-        TreeNode<T> lc = *child;
-        leftChild = unique_ptr<TreeNode<T>> (new TreeNode<T> lc);
-        lc->parent = this;
-    }
-    void setRightChild(TreeNode<T>* child){
-        
-        rightChild = unique_ptr<TreeNode<T>> (new TreeNode<T> *child);
+        leftChild.reset(child);
         child->parent = this;
+    }
+
+    void setRightChild(TreeNode<T>* child){
+        rightChild.reset(child);
+        child->parent = this;
+    }
+
+    void write(ostream& s) const{
+        if (leftChild){
+            leftChild->write(s);
+        }
+        s << " " << data << " " ;
+        if (rightChild){
+            rightChild->write(s);
+        }        
     }
 };
 // do not edit below this line
