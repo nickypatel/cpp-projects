@@ -17,111 +17,112 @@ class BinarySearchTree{
     }
 
     TreeNode<T>* insert(T data){
-        if(!root){
+        TreeNode<T>* current = root.get();
+        if (current == nullptr){
             TreeNode<T>* rootNode = new TreeNode<T>(data);
             root.reset(rootNode);
             return rootNode;  
         }
         else{
-            if (data < root->data){
-                if (!root->leftChild){
+            while (current != nullptr){
+           
+                if(data < current->data){
+                    if(!current->leftChild){
                     TreeNode<T>* lc = new TreeNode<T>(data);
-                    root->setLeftChild(lc);
-                    return lc;
+                    current->setLeftChild(lc);
+                    return lc; 
+                    }
+                    else{
+                        current = current->leftChild.get();
+                    }
                 }
-                else{
-                    if (data < root->leftChild->data){
+                else if( current->data < data){
+                    if(!current->rightChild){
                     TreeNode<T>* lc = new TreeNode<T>(data);
-                    root->leftChild->setLeftChild(lc);
-                    return lc;
+                    current->setRightChild(lc);
+                    return lc; 
                     }
-                    else if(root->leftChild->data < data){
-                    TreeNode<T>* rc = new TreeNode<T>(data);
-                    root->leftChild->setRightChild(rc);
-                    return rc;    
+                    else{
+                        current = current->rightChild.get();
                     }
-                    else {return root->leftChild.get();}
                 }
-            }
-            else if( root->data < data){
-                if (!root->rightChild){
-                    TreeNode<T>* lc = new TreeNode<T>(data);
-                    root->setRightChild(lc);
-                    return lc;
-                }
-                else{
-                    if (data < root->rightChild->data){
-                    TreeNode<T>* lc = new TreeNode<T>(data);
-                    root->rightChild->setLeftChild(lc);
-                    return lc;
-                    }
-                    else if(root->rightChild->data < data){
-                    TreeNode<T>* rc = new TreeNode<T>(data);
-                    root->rightChild->setRightChild(rc);
-                    return rc;    
-                    }
-                    else {return root->rightChild.get();}
+                else {
+                    return current;
                 }
             }
-            else {return root.get();}
+            return current;
         }
-
     }
-
+ 
     TreeNode<T>* find(T data){
-        TreeNode<T>* mynode = nullptr;
-        if(!root){
-            return mynode;  
+        TreeNode<T>* current = root.get();
+        if (current == nullptr){
+            return current;
         }
         else{
-            if (data < root->data){
-                if (!root->leftChild){
-                    return mynode;
+            while (current != nullptr){
+           
+                if(data < current->data){
+                    if(current->leftChild){
+                        current = current->leftChild.get();
+                    }
+                    else{
+                        current = nullptr;
+                    }
                 }
-                else{
-                    if (data < root->leftChild->data){
-                        if(data == root->leftChild->leftChild->data){
-                            return root->leftChild->leftChild.get();
-                        }
-                        else{return mynode;}
+                else if( current->data < data){
+                    if(current->rightChild){
+                    current = current->rightChild.get();
                     }
-                    else if(root->leftChild->data < data){
-                        if(data == root->leftChild->rightChild->data){
-                            return root->leftChild->rightChild.get();
-                        }
-                        else{return mynode;}                      
+                    else{
+                        current = nullptr;
                     }
-                    else {return root->leftChild.get();}
                 }
-            }
-            else if( root->data < data){
-                if (!root->rightChild){
-                    return mynode;
-                }
-                else{
-                    if (data < root->rightChild->data){
-                        if(data == root->rightChild->leftChild->data){
-                            return root->rightChild->leftChild.get();
-                        }
-                        else{return mynode;}
-                    }
-                    else if(root->rightChild->data < data){
-                        if(data == root->rightChild->rightChild->data){
-                            return root->rightChild->rightChild.get();
-                        }
-                        else{return mynode;}
-                    }
-                    else {return root->rightChild.get();}
+                else {
+                    return current;
                 }
             }
-            else {return root.get();}
+            return current;
         }
-    }
+    } 
 
     BinarySearchTree(const BinarySearchTree<T>& other){
+ /*        TreeNode<T>* other_current = other.root.get();
+        if (other_current == nullptr){
+            return;
+        }
+        else{
+            while (other_current != nullptr){
+
+                if(current){
+                    if(current->leftChild){
+                    TreeNode<T>* lc = new TreeNode<T>(current->leftChild->data);
+                    current->setLeftChild(lc);
+                    
+                    }
+                    else{
+                        current = current->leftChild.get();
+                    }
+                }
+                else if( current->data < data){
+                    if(!current->rightChild){
+                    TreeNode<T>* lc = new TreeNode<T>(data);
+                    current->setRightChild(lc);
+                    return lc; 
+                    }
+                    else{
+                        current = current->rightChild.get();
+                    }
+                }
+                else {
+                    return current;
+                }
+            }
+            return current;
+        } */
         if (other.root){
-            TreeNode<T>* rootNode = new TreeNode<T>(other.root->data);
-            root.reset(rootNode);
+                TreeNode <T>* rootNode = new TreeNode<T>(other.root->data);
+                root.reset(rootNode);
             
             if (other.root->leftChild){
                 TreeNode<T>* lc = new TreeNode<T>(other.root->leftChild->data);
