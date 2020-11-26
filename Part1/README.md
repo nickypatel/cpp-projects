@@ -137,8 +137,4 @@ Notes:
 
 
 
-mynotes:
-check if string is valid: check that number of digits > operators
-
-take two digits, apply all 4 operators
 

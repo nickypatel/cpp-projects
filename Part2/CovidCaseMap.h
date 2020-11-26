@@ -35,7 +35,7 @@ class CovidCaseMap{
     public:
 
     void addCase(CovidCase c){
-        cases.push_back(c);
+        cases.emplace_back(c);
     }
     
     vector<TimeAndCaseData> getCasesOverTime(const int& active_time){
