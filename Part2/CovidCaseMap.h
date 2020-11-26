@@ -44,10 +44,10 @@ class CovidCaseMap{
         int current_time(0);
         int active_cases(0);
 
-        for (int i = 0; i < cases.size(); ++i){
+        for (unsigned int i = 0; i < cases.size(); ++i){
             
             current_time = cases[i].getTime();
-            for (int j = 1; j < data.size(); ++j){
+            for (unsigned int j = 1; j < data.size(); ++j){
                 if (data[j].getTime()+ active_time < current_time){
                     --active_cases;
                     data.push_back(TimeAndCaseData(data[j].getTime()+ active_time, active_cases));
@@ -57,7 +57,7 @@ class CovidCaseMap{
             data.push_back(TimeAndCaseData(cases[i].getTime(), active_cases));
 
             if (i == cases.size()-1){
-                for (int k = 0; k < cases.size();++k){
+                for (unsigned int k = 0; k < cases.size();++k){
                     if(cases[k].getTime()+ active_time > current_time){
                         --active_cases;
                         data.push_back(TimeAndCaseData(cases[k].getTime()+ active_time, active_cases));
@@ -97,7 +97,7 @@ class CovidCaseMap{
 
     vector<CovidCase> getActiveCases (const int& time){
         vector<CovidCase> activecases;
-        for (int i = 0; i < cases.size(); ++i){
+        for (unsigned int i = 0; i < cases.size(); ++i){
             if (cases[i].getTime() + self_isolation_period > time && cases[i].getTime() < time){
                 activecases.emplace_back(cases[i]);
             } 
@@ -113,7 +113,7 @@ class CovidCaseMap{
         coordinates.emplace_back(latstart,longstart);
 
         vector<CovidCase> actvcases = getActiveCases(start_time);
-        for (int i = 0; i < actvcases.size(); ++i){
+        for (unsigned int i = 0; i < actvcases.size(); ++i){
            coordinates.emplace_back(actvcases[i].getLatitude(), actvcases[i].getLongitude());
             
         }
