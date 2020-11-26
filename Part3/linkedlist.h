@@ -119,12 +119,12 @@ class LinkedList{
 
     ~LinkedList(){
         Node<T>* current = head;
-        while (current!= nullptr)
+        do
         {
             Node<T>* next = current->next;
             delete current;
             current = next;
-        }
+        }while (current!= nullptr);
         
     }
 
