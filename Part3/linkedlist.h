@@ -185,10 +185,13 @@ class LinkedList{
            
            previous->next = temp->next;
         }
+        ++itr;
         delete temp;
-
+        return itr;
+        
+        /* 
         NodeIterator<T> newitr(next);
-        return newitr;
+        return newitr; */
     }
 
     NodeIterator2<T>  begin() const{
