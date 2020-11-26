@@ -185,6 +185,13 @@ class LinkedList{
            
            previous->next = temp->next;
         }
+        
+        if (temp->previous == nullptr){
+            head = next;
+        }
+        if(temp->next == nullptr){
+            tail = previous;
+        }
         ++itr;
         return itr;
         
