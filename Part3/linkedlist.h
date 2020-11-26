@@ -186,7 +186,6 @@ class LinkedList{
            previous->next = temp->next;
         }
         ++itr;
-        delete temp;
         return itr;
         
         /* 
