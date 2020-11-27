@@ -191,10 +191,14 @@ class BinarySearchTree{
 
     TreeNodeIterator<T> begin(){
         TreeNodeIterator<T> itr(root.get());
-        while (itr.current->leftChild){
+        if(itr.current ==nullptr){
+            return itr;
+        } else {
+            while(itr.current->leftChild){
             itr.current = itr.current->leftChild.get();
         }
         return itr;
+        }
     }
 
     TreeNodeIterator<T>  end(){

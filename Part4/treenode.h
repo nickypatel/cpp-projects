@@ -95,9 +95,12 @@ public:
     TreeNodeIterator<T> operator++(){
        TreeNode<T>* newtn = current;
        do{
-            if (newtn->rightChild && newtn->rightChild.get() != current){
+            if (newtn->rightChild){
+
+             if(newtn->rightChild.get() != current){
                 newtn =newtn->rightChild.get();
              }
+            }
             else{
                 newtn = newtn->parent;
             }
