@@ -88,36 +88,133 @@ class Sudoku {
                     }
                     unsigned int sq = sqrt(size);
                     int colNumber = (c+1) % sq ;
-                    
+                    int rowNumber = (r+1) % sq ;
                     switch (colNumber){
                         case 1:
-                            for(unsigned int r2 = r; r2 < r2 + sq; ++r2){
-                                for (unsigned int c2 = c; c2 < c2 + sq; ++c2){
-                                    board[r2][c2].erase(val);
-                                }
+                            switch (rowNumber){
+                                case 1:
+                                    for(unsigned int r2 = r; r2 < r2 + sq; ++r2){
+                                        for (unsigned int c2 = c; c2 < c2 + sq; ++c2){
+                                            board[r2][c2].erase(val);
+                                        }
+                                    }
+                                    break;
+                                case 2:
+                                    for(unsigned int r3 = r - 1; r3 < r3 + sq; ++r3){
+                                        for (unsigned int c3 = c; c3 < c3 + sq; ++c3){
+                                            board[r3][c3].erase(val);
+                                        }
+                                    }
+                                    break;
+                                case 3:
+                                    for(unsigned int r4 = r - 2; r4 < r4 + sq; ++r4){
+                                        for (unsigned int c4 = c; c4 < c4 + sq; ++c4){
+                                            board[r4][c4].erase(val);
+                                        }
+                                    }
+                                    break;                                                            
+                                case 0:
+                                    for(unsigned int r5 = r - sq + 1; r5 < r5 + sq; ++r5){
+                                        for (unsigned int c5 = c; c5 < c5 + sq; ++c5){
+                                            board[r5][c5].erase(val);
+                                        }
+                                    }
+                                    break;
                             }
-                            break;
                         case 2:
-                            for(unsigned int r3 = r - 1; r3 < r3 + sq; ++r3){
-                                for (unsigned int c3 = c-1; c3 < c3 + sq; ++c3){
-                                    board[r3][c3].erase(val);
-                                }
-                            }
-                            break;
+                            switch (rowNumber){
+                                case 1:
+                                    for(unsigned int r2 = r; r2 < r2 + sq; ++r2){
+                                        for (unsigned int c2 = c-1; c2 < c2 + sq; ++c2){
+                                            board[r2][c2].erase(val);
+                                        }
+                                    }
+                                    break;
+                                case 2:
+                                    for(unsigned int r3 = r - 1; r3 < r3 + sq; ++r3){
+                                        for (unsigned int c3 = c-1; c3 < c3 + sq; ++c3){
+                                            board[r3][c3].erase(val);
+                                        }
+                                    }
+                                    break;
+                                case 3:
+                                    for(unsigned int r4 = r - 2; r4 < r4 + sq; ++r4){
+                                        for (unsigned int c4 = c-1; c4 < c4 + sq; ++c4){
+                                            board[r4][c4].erase(val);
+                                        }
+                                    }
+                                    break;                                                            
+                                case 0:
+                                    for(unsigned int r5 = r - sq + 1; r5 < r5 + sq; ++r5){
+                                        for (unsigned int c5 = c-1; c5 < c5 + sq; ++c5){
+                                            board[r5][c5].erase(val);
+                                        }
+                                    }
+                                    break;
+                            }                         
                         case 3:
-                            for(unsigned int r4 = r - 2; r4 < r4 + sq; ++r4){
-                                for (unsigned int c4 = c - 2; c4 < c4 + sq; ++c4){
-                                    board[r4][c4].erase(val);
-                                }
-                            }
-                            break;                                                            
+                            switch (rowNumber){
+                                case 1:
+                                    for(unsigned int r2 = r; r2 < r2 + sq; ++r2){
+                                        for (unsigned int c2 = c-2; c2 < c2 + sq; ++c2){
+                                            board[r2][c2].erase(val);
+                                        }
+                                    }
+                                    break;
+                                case 2:
+                                    for(unsigned int r3 = r - 1; r3 < r3 + sq; ++r3){
+                                        for (unsigned int c3 = c-2; c3 < c3 + sq; ++c3){
+                                            board[r3][c3].erase(val);
+                                        }
+                                    }
+                                    break;
+                                case 3:
+                                    for(unsigned int r4 = r - 2; r4 < r4 + sq; ++r4){
+                                        for (unsigned int c4 = c-2; c4 < c4 + sq; ++c4){
+                                            board[r4][c4].erase(val);
+                                        }
+                                    }
+                                    break;                                                            
+                                case 0:
+                                    for(unsigned int r5 = r - sq + 1; r5 < r5 + sq; ++r5){
+                                        for (unsigned int c5 = c-2; c5 < c5 + sq; ++c5){
+                                            board[r5][c5].erase(val);
+                                        }
+                                    }
+                                    break;
+                            }                         
+                                                                                     
                         case 0:
-                            for(unsigned int r5 = r - sq + 1; r5 < r5 + sq; ++r5){
-                                for (unsigned int c5 = c -sq +1; c5 < c5 + sq; ++c5){
-                                    board[r5][c5].erase(val);
-                                }
-                            }
-                            break;
+                            switch (rowNumber){
+                                case 1:
+                                    for(unsigned int r2 = r; r2 < r2 + sq; ++r2){
+                                        for (unsigned int c2 = c- sq + 1; c2 < c2 + sq; ++c2){
+                                            board[r2][c2].erase(val);
+                                        }
+                                    }
+                                    break;
+                                case 2:
+                                    for(unsigned int r3 = r - 1; r3 < r3 + sq; ++r3){
+                                        for (unsigned int c3 = c- sq + 1; c3 < c3 + sq; ++c3){
+                                            board[r3][c3].erase(val);
+                                        }
+                                    }
+                                    break;
+                                case 3:
+                                    for(unsigned int r4 = r - 2; r4 < r4 + sq; ++r4){
+                                        for (unsigned int c4 = c- sq + 1; c4 < c4 + sq; ++c4){
+                                            board[r4][c4].erase(val);
+                                        }
+                                    }
+                                    break;                                                            
+                                case 0:
+                                    for(unsigned int r5 = r - sq + 1; r5 < r5 + sq; ++r5){
+                                        for (unsigned int c5 = c- sq + 1; c5 < c5 + sq; ++c5){
+                                            board[r5][c5].erase(val);
+                                        }
+                                    }
+                                    break;
+                            }                                                   
                     }
                     board[r][c].insert(val);
                 }        
